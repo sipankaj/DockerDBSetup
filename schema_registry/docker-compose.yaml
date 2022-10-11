@@ -1,0 +1,18 @@
+version: '3'
+  
+services:
+  schema-registry:
+    image: "confluentinc/cp-schema-registry:${CONF_VER}"
+    container_name: schema-registry
+    ports:
+      - 8081:8081
+    environment:
+      TZ: ${TZ_IND}
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+      SCHEMA_REGISTRY_AVRO_COMPATIBILITY_LEVEL: "none"
+      SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: "WARN"
+networks:
+  default:
+    name: my-awesome-app-network
+    external: true
